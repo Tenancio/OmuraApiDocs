@@ -27,7 +27,7 @@ paths:
         required: false
         schema:
           type: string
-          example: "Culture,asc"
+          example: "day_volume,asc"
       - name: category
         description: Filters returned results by category
         in: query
