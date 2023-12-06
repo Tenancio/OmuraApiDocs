@@ -5,7 +5,13 @@ info:
   description: NFT Exchange on Cardano
 servers:
   - url: https://omura.tenancio.com
-
+tags:
+  - name: Pools
+    description: "Pool Operations"
+  - name: Users
+    description: "User Operations"
+  - name: Exchange
+    description: "Exchange Operations"
 paths:
   /pools:
     parameters:
@@ -365,13 +371,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-tags:
-  - name: Pools
-    description: "Pool Operations"
-  - name: Users
-    description: "User Operations"
-  - name: Exchange
-    description: "Exchange Operations"
 components:
   schemas:
     Pools:
