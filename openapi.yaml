@@ -296,7 +296,8 @@ paths:
   /exchange/config:
     get:
       summary: get the Omura exchange configuration
-      tags: Exchange
+      tags: 
+        - Exchange
       responses:
         200:
           description: Omura exchange configuration
