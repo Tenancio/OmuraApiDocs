@@ -227,7 +227,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /createuser:
+  /user/create:
     parameters:
       - name: username
         description: The username to use when creating the user
@@ -273,11 +273,27 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /exchange/config:
+    get:
+      summary: get the Omura exchange configuration
+      responses:
+        200:
+          description: Omura exchange configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExchangeConfig'
+        500:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /exchange/symbols:
     get:
       summary: get symbols on the Omura exchange
       responses:
-        '200':
+        200:
           description: Symbols on the Omura exchange
           content:
             application/json:
@@ -503,6 +519,46 @@ components:
           type: integer
         time:
           type: integer
+    ExchangeConfig:
+      type: object
+      required:
+        - supported_resolutions
+        - exchanges
+        - symbols_types
+      properties:
+        supported_resolutions:
+          type: string
+        exchanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/Exchange'
+        symbols_types:
+          type: array
+          items:
+            $ref: '#/components/schemas/SymbolType'
+    Exchange:
+      type: object
+      required:
+        - value
+        - name
+        - desc
+      properties:
+        value:
+          type: string
+        name:
+          type: string
+        desc:
+          type: string
+    SymbolType:
+      type: object
+      required:
+        - name
+        - value
+      properties:
+        value:
+          type: string
+        value:
+          type: string
     Error:
       type: object
       required:
