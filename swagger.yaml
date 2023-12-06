@@ -39,7 +39,7 @@ paths:
     get:
       summary: Get a list of pools available on Omura
       responses:
-        '200':
+        200:
           description: A list of pools available on Omura
           content:
             application/json:
@@ -55,7 +55,7 @@ paths:
     get:
       summary: Get a list of popular pools on Omura
       responses:
-        '200':
+        200:
           description: A list of popular pools on Omura
           content:
             application/json:
@@ -78,7 +78,7 @@ paths:
     get:
       summary: Get the details of a specific pool
       responses:
-        '200':
+        200:
           description: The details of a specific pool
           content:
             application/json:
@@ -107,7 +107,7 @@ paths:
     get:
       summary: Get the price of a specific pool
       responses:
-        '200':
+        200:
           description: The price of a specific pool
           content:
             application/json:
@@ -136,7 +136,7 @@ paths:
     get:
       summary: Get the id of a user
       responses:
-        '200':
+        200:
           description: The id of a user
           content:
             application/json:
@@ -170,7 +170,7 @@ paths:
     get:
       summary: Get the id of a user
       responses:
-        '200':
+        200:
           description: The id of a user
           content:
             application/json:
@@ -204,7 +204,7 @@ paths:
     get:
       summary: Get the notifications of a user
       responses:
-        '200':
+        200:
           description: The notifications of a user
           content:
             application/json:
@@ -227,7 +227,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /user/create:
+  /users/create:
     parameters:
       - name: username
         description: The username to use when creating the user
@@ -250,7 +250,7 @@ paths:
     post:
       summary: Create a user
       responses:
-        '200':
+        200:
           description: User created
           content:
             application/json:
@@ -334,7 +334,7 @@ paths:
     get:
       summary: get bar data for a symbol on the Omura exchange
       responses:
-        '200':
+        200:
           description: Bar data for a symbol on the Omura exchange
           content:
             application/json:
