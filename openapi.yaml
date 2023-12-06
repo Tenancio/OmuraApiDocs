@@ -36,7 +36,8 @@ paths:
           type: string
     get:
       summary: Get a list of pools available on Omura
-      tags: Pools
+      tags:
+        - Pools
       responses:
         200:
           description: A list of pools available on Omura
@@ -53,7 +54,8 @@ paths:
   /pools/popular:
     get:
       summary: Get a list of popular pools on Omura
-      tags: Pools
+      tags:
+        - Pools
       responses:
         200:
           description: A list of popular pools on Omura
@@ -77,7 +79,8 @@ paths:
           type: string
     get:
       summary: Get the details of a specific pool
-      tags: Pools
+      tags:
+        - Pools
       responses:
         200:
           description: The details of a specific pool
@@ -107,7 +110,8 @@ paths:
           type: string
     get:
       summary: Get the price of a specific pool
-      tags: Pools
+      tags:
+        - Pools
       responses:
         200:
           description: The price of a specific pool
@@ -137,7 +141,8 @@ paths:
           type: string
     get:
       summary: Get the id of a user
-      tags: Users
+      tags:
+        - Users
       responses:
         200:
           description: The id of a user
@@ -172,7 +177,8 @@ paths:
           type: string
     get:
       summary: Get the id of a user
-      tags: Users
+      tags:
+        - Users
       responses:
         200:
           description: The id of a user
@@ -207,7 +213,8 @@ paths:
           type: string
     get:
       summary: Get the notifications of a user
-      tags: Users
+      tags:
+        - Users
       responses:
         200:
           description: The notifications of a user
@@ -254,7 +261,8 @@ paths:
           type: string
     post:
       summary: Create a user
-      tags: Users
+      tags:
+        - Users
       responses:
         201:
           description: User created
@@ -299,7 +307,8 @@ paths:
   /exchange/symbols:
     get:
       summary: get symbols on the Omura exchange
-      tags: Exchange
+      tags:
+        - Exchange
       responses:
         200:
           description: Symbols on the Omura exchange
@@ -341,7 +350,8 @@ paths:
           type: integer
     get:
       summary: Get bar data for a symbol on the Omura exchange
-      tags: Exchange
+      tags:
+        - Exchange
       responses:
         200:
           description: Bar data for a symbol on the Omura exchange
