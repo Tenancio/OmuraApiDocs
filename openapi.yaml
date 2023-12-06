@@ -365,6 +365,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+tags:
+  - name: Pools
+    description: "Pool Operations"
+  - name: Users
+    description: "User Operations"
+  - name: Exchange
+    description: "Exchange Operations"
 components:
   schemas:
     Pools:
