@@ -385,15 +385,15 @@ components:
         project_name:
           type: string
         seven_day_price_change:
-          type: integer
+          type: number
         created_at:
           type: integer
         lp_fee:
-          type: integer
+          type: number
         seven_day_volume_change:
-          type: integer
+          type: number
         symbol:
-          type: integer
+          type: string
         token_liquidity:
           type: integer
         verified:
@@ -401,25 +401,25 @@ components:
         project_name_lower:
           type: string
         market_cap:
-          type: integer
+          type: number
         day_volume:
-          type: integer
+          type: number
         day_price_change:
-          type: integer
+          type: number
         total_lps:
           type: integer
         seven_day_volume:
-          type: integer
+          type: number
         ada_liquidity:
-          type: integer
+          type: number
         trading_fees_apr:
-          type: integer
+          type: number
         day_volume_change:
-          type: integer
+          type: number
         price:
-          type: integer
+          type: number
         market_cap_usd:
-          type: integer
+          type: number
     Notifications:
       type: array
       items:
@@ -441,7 +441,7 @@ components:
         notification_type:
           type: string
         quantity:
-          type: integer
+          type: number
         ticker:
           type: string
         txid:
@@ -508,13 +508,13 @@ components:
         - time
       properties:
         open:
-          type: integer
+          type: number
         high:
-          type: integer
+          type: number
         low:
-          type: integer
+          type: number
         close:
-          type: integer
+          type: number
         time:
           type: integer
     ExchangeConfig:
