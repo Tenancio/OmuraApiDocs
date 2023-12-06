@@ -555,7 +555,7 @@ components:
         - name
         - value
       properties:
-        value:
+        name:
           type: string
         value:
           type: string
