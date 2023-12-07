@@ -146,7 +146,7 @@ paths:
         schema:
           type: string
     get:
-      summary: Get the id of a user
+      summary: Get the id of a user (creates a user if they do not exist)
       tags:
         - Users
       responses:
@@ -161,12 +161,6 @@ paths:
                 properties:
                   user_id:
                     type: string
-        404:
-          description: Unable to find requested user
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
         500:
           description: Unexpected error
           content:
@@ -209,6 +203,138 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /users/{id}:
+    parameters:
+      - name: id
+        description: The ID of the user to find
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      summary: Get a user's details
+      tags:
+        - Users
+      responses:
+        200:
+          description: User details
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - user
+                properties:
+                  user:
+                    $ref: '#/components/schemas/User'
+        404:
+          description: Unable to find requested user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        500:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /users/update:
+    parameters:
+      - name: id
+        description: The is of user to update
+        in: body
+        required: true
+        schema:
+          type: string
+      - name: username
+        description: The new username of the user
+        in: body
+        required: false
+        schema:
+          type: string
+      - name: image
+        description: The new display image of the user
+        in: query
+        required: false
+        schema:
+          type: string
+    post:
+      summary: Update a user
+      tags:
+        - Users
+      responses:
+        200:
+          description: User updated
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - user
+                properties:
+                  user:
+                    $ref: '#/components/schemas/User'
+        400:
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        500:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /users/create:
+    parameters:
+      - name: pkh
+        description: The pkh to use when creating the user
+        in: body
+        required: true
+        schema:
+          type: string
+      - name: username
+        description: The username to use when creating the user
+        in: body
+        required: false
+        schema:
+          type: string
+      - name: email
+        description: The email to use when creating the user
+        in: body
+        required: false
+        schema:
+          type: string
+    post:
+      summary: Create a user
+      tags:
+        - Users
+      responses:
+        201:
+          description: User created
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - user
+                properties:
+                  user:
+                    $ref: '#/components/schemas/User'
+        400:
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        500:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /notifications/{userid}:
     parameters:
       - name: userid
@@ -235,54 +361,6 @@ paths:
                     $ref: '#/components/schemas/Notifications'
         404:
           description: Unable to find requested user
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        500:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-  /users/create:
-    parameters:
-      - name: username
-        description: The username to use when creating the user
-        in: query
-        required: false
-        schema:
-          type: string
-      - name: email
-        description: The email to use when creating the user
-        in: query
-        required: false
-        schema:
-          type: string
-      - name: pkh
-        description: The pkh to use when creating the user
-        in: query
-        required: true
-        schema:
-          type: string
-    post:
-      summary: Create a user
-      tags:
-        - Users
-      responses:
-        201:
-          description: User created
-          content:
-            application/json:
-              schema:
-                type: object
-                required:
-                  - user
-                properties:
-                  user:
-                    $ref: '#/components/schemas/User'
-        400:
-          description: Invalid request
           content:
             application/json:
               schema:
