@@ -146,7 +146,7 @@ paths:
         schema:
           type: string
     get:
-      summary: Get the id of a user (creates a user if they do not exist)
+      summary: Get the id of a user from a pkh (creates a user if they do not exist)
       tags:
         - Users
       responses:
@@ -176,7 +176,7 @@ paths:
         schema:
           type: string
     get:
-      summary: Get the id of a user
+      summary: Get the id of a user from a userame
       tags:
         - Users
       responses:
