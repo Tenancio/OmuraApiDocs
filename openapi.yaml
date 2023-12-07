@@ -137,7 +137,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /users/pkh/{pkh}:
+  /users/{pkh}:
     parameters:
       - name: pkh
         description: The user public key hash to find
@@ -146,12 +146,12 @@ paths:
         schema:
           type: string
     get:
-      summary: Get the id of a user from a pkh (creates a user if they do not exist)
+      summary: Get the details of a user from a pkh (creates a user if they do not exist)
       tags:
         - Users
       responses:
         200:
-          description: The id of a user
+          description: The details of a user
           content:
             application/json:
               schema:
@@ -161,78 +161,6 @@ paths:
                 properties:
                   user_id:
                     type: string
-        500:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-  /users/username/{username}:
-    parameters:
-      - name: username
-        description: The username to find
-        in: path
-        required: true
-        schema:
-          type: string
-    get:
-      summary: Get the id of a user from a userame
-      tags:
-        - Users
-      responses:
-        200:
-          description: The id of a user
-          content:
-            application/json:
-              schema:
-                type: object
-                required:
-                  - user_id
-                properties:
-                  user_id:
-                    type: string
-        404:
-          description: Unable to find requested user
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        500:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-  /users/{id}:
-    parameters:
-      - name: id
-        description: The ID of the user to find
-        in: path
-        required: true
-        schema:
-          type: string
-    get:
-      summary: Get a user's details
-      tags:
-        - Users
-      responses:
-        200:
-          description: User details
-          content:
-            application/json:
-              schema:
-                type: object
-                required:
-                  - user
-                properties:
-                  user:
-                    $ref: '#/components/schemas/User'
-        404:
-          description: Unable to find requested user
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
         500:
           description: Unexpected error
           content:
@@ -242,7 +170,7 @@ paths:
   /users/update:
     parameters:
       - name: id
-        description: The is of user to update
+        description: The ID of user to update
         in: body
         required: true
         schema:
