@@ -167,6 +167,47 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /users/{pkh}/liquidity:
+    parameters:
+      - name: pkh
+        description: The user public key hash to retrieve liquidity for
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      summary: Get the liquidity position of a user
+      tags:
+        - Users
+      responses:
+        200:
+          description: The liquidity positions of a user
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: array
+                  required:
+                    - symbol
+                    - pooled_ada
+                    - pooled_tokens
+                    - pool_share
+                  properties:
+                    symbol:
+                      type: string
+                    pooled_ada:
+                      type: number
+                    pooled_tokens:
+                      type: number
+                    pool_share:
+                      type: number
+        500:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /users/update:
     parameters:
       - name: id
@@ -372,6 +413,150 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Bars'
+        500:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /buildTokenDeposit:
+    parameters:
+      - name: token_policy
+        description: The policy of the token being locked
+        in: body
+        required: true
+        schema:
+          type: string
+      - name: symbol
+        description: The symbol of the project
+        in: body
+        required: true
+        schema:
+          type: string
+      - name: lock_assets
+        description: The assets being locked
+        in: body
+        required: true
+        schema:
+          type: array
+          items:
+            type: object
+            required:
+              - <asset>
+            properties:
+              type: number
+    get:
+      summary: Build a transaction for depositing tokens to receive FPT
+      tags:
+        - Tx
+      responses:
+        200:
+          description: An Unsigned Transaction
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - tx
+                properties:
+                  tx:
+                    type: string
+        500:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /buildTokenWithdraw:
+    parameters:
+      - name: token_policy
+        description: The policy of the token being unlocked
+        in: body
+        required: true
+        schema:
+          type: string
+      - name: symbol
+        description: The symbol of the project
+        in: body
+        required: true
+        schema:
+          type: string
+      - name: lock_assets
+        description: The assets being unlocked
+        in: body
+        required: true
+        schema:
+          type: array
+          items:
+            type: object
+            required:
+              - <asset>
+            properties:
+              type: number
+    get:
+      summary: Build a transaction for withdrawing tokens using FPT
+      tags:
+        - Tx
+      responses:
+        200:
+          description: An Unsigned Transaction
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - tx
+                properties:
+                  tx:
+                    type: string
+        500:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /submit:
+    parameters:
+      - name: type
+        description: The type of transaction
+        in: body
+        required: true
+        schema:
+          type: string
+      - name: tx
+        description: The transaction body
+        in: body
+        required: true
+        schema:
+          type: string
+      - name: witness
+        description: The transaction witness
+        in: body
+        required: true
+        schema:
+          type: string
+      - name: pkh
+        description: The user's pkh
+        in: body
+        required: true
+        schema:
+          type: string
+    post:
+      summary: Sumbit a transaction to the blockchain
+      tags:
+        - Tx
+      responses:
+        200:
+          description: A Tx Hash
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - txHash
+                properties:
+                  txHash:
+                    type: string
         500:
           description: Unexpected error
           content:
