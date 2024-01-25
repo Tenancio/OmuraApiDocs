@@ -106,37 +106,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /pools/{poolid}/price:
-    parameters:
-      - name: poolid
-        description: The pool id to find
-        in: path
-        required: true
-        schema:
-          type: string
-    get:
-      summary: Get the price of a specific pool
-      tags:
-        - Pools
-      responses:
-        200:
-          description: The price of a specific pool
-          content:
-            application/json:
-              schema:
-                type: integer
-        404:
-          description: Unable to find requested pool
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        500:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
   /users/{pkh}:
     parameters:
       - name: pkh
@@ -189,18 +158,27 @@ paths:
                 items:
                   type: array
                   required:
+                    - id
+                    - name
                     - symbol
+                    - img
                     - pooled_ada
                     - pooled_tokens
-                    - pool_share
+                    - share
                   properties:
+                    id:
+                      type: string
+                    name:
+                      type: string
                     symbol:
+                      type: string
+                    img:
                       type: string
                     pooled_ada:
                       type: number
                     pooled_tokens:
                       type: number
-                    pool_share:
+                    share:
                       type: number
         500:
           description: Unexpected error
@@ -419,6 +397,37 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /exchange/transactions/{symbol}:
+    parameters:
+      - name: symbol
+        description: The symbol to retrieve transactions for
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: page
+        description: page number for pagination
+        in: query
+        required: false
+        schema:
+          type: integer
+    get:
+      summary: Get transactions for a specific pool
+      tags:
+        - Exchange
+      responses:
+        200:
+          description: Transaction logs for the pool
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transactions'
+        500:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'       
   /buildTokenDeposit:
     parameters:
       - name: token_policy
@@ -481,7 +490,7 @@ paths:
         required: true
         schema:
           type: string
-      - name: lock_assets
+      - name: unlock_assets
         description: The assets being unlocked
         in: body
         required: true
@@ -776,6 +785,40 @@ components:
           type: string
         value:
           type: string
+    Transactions:
+      type: object
+      required:
+        - transactions
+      properties:
+        transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transaction'
+    Transaction:
+      type: object
+      required:
+        - id
+        - status
+        - event
+        - price
+        - input
+        - output
+        - timestamp
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+        event:
+          type: string
+        price:
+          type: number
+        input:
+          type: number
+        output:
+          type: number
+        timestamp:
+          type: number
     Error:
       type: object
       required:
