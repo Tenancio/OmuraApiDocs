@@ -703,25 +703,34 @@ components:
     Symbol:
       type: object
       required:
+        - id
+        - project_name
         - symbol
-        - full_name
-        - description
-        - exchange
-        - ticker
-        - type
+        - category
+        - price
+        - day_price_change
+        - day_volume
+        - token_liquidity
+        - price_usd
       properties:
+        id:
+          type: string
+        project_name:
+          type: string
         symbol:
           type: string
-        full_name:
+        category:
           type: string
-        description:
-          type: string
-        exchange:
-          type: string
-        ticker:
-          type: string
-        type:
-          type: string
+        price:
+          type: number
+        day_price_change:
+          type: number
+        day_volume:
+          type: number
+        token_liquidity:
+          type: number
+        price_usd:
+          type: number
     Bars:
       type: array
       items:
