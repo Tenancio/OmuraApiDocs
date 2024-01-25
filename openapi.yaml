@@ -165,6 +165,9 @@ paths:
                     - pooled_ada
                     - pooled_tokens
                     - share
+                    - lp_balance
+                    - price
+                    - price_usd
                   properties:
                     id:
                       type: string
@@ -179,6 +182,12 @@ paths:
                     pooled_tokens:
                       type: number
                     share:
+                      type: number
+                    lp_balance:
+                      type: number
+                    price:
+                      type: number
+                    price_usd:
                       type: number
         500:
           description: Unexpected error
