@@ -205,6 +205,16 @@ paths:
           type: string
       - name: page
         description: Page to return for pagination
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: search
+        description: Symbol to search for
+        in: query
+        required: false
+        schema:
+          type: string
 
     get:
       summary: Get a user's transactions
@@ -839,7 +849,7 @@ components:
       required:
         - id
         - status
-        - pool
+        - symbol
         - event
         - price
         - input
@@ -850,7 +860,7 @@ components:
           type: string
         status:
           type: string
-        pool: 
+        symbol: 
           type: string
         event:
           type: string
