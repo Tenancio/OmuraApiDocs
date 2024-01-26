@@ -195,6 +195,28 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /users/{pkh}/transactions:
+    parameters:
+      - name: pkh
+        description: The pkh of the user
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: page
+        description: Page to return for pagination
+
+    get:
+      summary: Get a user's transactions
+      tags:
+        - Users
+      responses:
+        200:
+          description: User transactions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transactions'
   /users/update:
     parameters:
       - name: id
@@ -817,6 +839,7 @@ components:
       required:
         - id
         - status
+        - pool
         - event
         - price
         - input
@@ -826,6 +849,8 @@ components:
         id:
           type: string
         status:
+          type: string
+        pool: 
           type: string
         event:
           type: string
