@@ -323,10 +323,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /notifications/{userid}:
+  /notifications/{pkh}:
     parameters:
-      - name: userid
-        description: The userid to get notifications for
+      - name: pkh
+        description: The pkh to get notifications for
         in: path
         required: true
         schema:
