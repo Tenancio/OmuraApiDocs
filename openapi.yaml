@@ -746,10 +746,12 @@ components:
       required:
         - id
         - project_name
+        - img
         - symbol
         - category
         - price
         - day_price_change
+        - day_price_change_amount
         - day_volume
         - token_liquidity
         - price_usd
@@ -758,6 +760,8 @@ components:
           type: string
         project_name:
           type: string
+        img:
+          type: string
         symbol:
           type: string
         category:
@@ -765,6 +769,8 @@ components:
         price:
           type: number
         day_price_change:
+          type: number
+        day_price_change_amount:
           type: number
         day_volume:
           type: number
