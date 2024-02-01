@@ -12,6 +12,8 @@ tags:
     description: "User Operations"
   - name: Exchange
     description: "Exchange Operations"
+  - name: Liquidity
+    description: "Liquidity Operations"
 paths:
   /pools:
     parameters:
@@ -559,6 +561,60 @@ paths:
                 properties:
                   tx:
                     type: string
+        500:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /buildLiquidityDeposit:
+    parameters:
+      - name: symbol
+        description: The pool symbol
+        in: body
+        required: true
+        schema:
+          type: string
+      - name: ada
+        description: The amount of ada being deposited
+        in: body
+        required: true
+        schema:
+          type: number
+      - name: token_amount
+        description: The amount of tokens to be deposited
+        in: body
+        required: true
+        schema:
+          type: number
+      - name: pkh
+        description: The user's public key hash
+        in: body
+        required: true
+        schema:
+          type: string
+    post:
+      summary: Create a transaction to deposit tokens to a liquidity pool
+      tags: 
+        - Liquidity
+      responses:
+        200:
+          description: An unsigned transaction
+          content:
+            application/json:
+              schema:
+                type: object
+                required: 
+                  - tx
+                properties:
+                  tx:
+                    type: string
+        404:
+          description: Pool not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         500:
           description: Unexpected error
           content:
