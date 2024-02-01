@@ -495,7 +495,7 @@ paths:
               - <asset>
             properties:
               type: number
-    get:
+    post:
       summary: Build a transaction for depositing tokens to receive FPT
       tags:
         - Tx
@@ -543,7 +543,7 @@ paths:
               - <asset>
             properties:
               type: number
-    get:
+    post:
       summary: Build a transaction for withdrawing tokens using FPT
       tags:
         - Tx
