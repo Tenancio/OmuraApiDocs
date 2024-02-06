@@ -800,25 +800,35 @@ components:
     Notification:
       type: object
       required:
-        - user_id
-        - notification_id
-        - notification_type
-        - quantity
-        - ticker
-        - txid
+        - id
+        - pkh
+        - type
+        - timestamp
+      optional:
+        - amount
+        - feature_name
+        - message
+        - project_name
+        - symbol
       properties:
-        user_id:
+        id:
           type: string
-        notification_id:
+        pkh:
           type: string
-        notification_type:
+        type:
           type: string
-        quantity:
+        timestamp:
           type: number
-        ticker:
+        amount:
+          type: number
+        feature_name:
           type: string
-        txid:
+        message:
           type: string
+        project_name:
+          type: string
+        symbol:
+          type: string        
     User:
       type: object
       required:
