@@ -910,6 +910,7 @@ components:
       type: object
       required:
         - id
+        - pkh
         - status
         - symbol
         - event
@@ -919,6 +920,8 @@ components:
         - timestamp
       properties:
         id:
+          type: string
+        pkh:
           type: string
         status:
           type: string
