@@ -333,6 +333,12 @@ paths:
         required: true
         schema:
           type: string
+      - name: page
+        description: the page to get
+        in: query
+        required: false
+        schema:
+          type: number
     get:
       summary: Get the notifications of a user
       tags:
@@ -346,15 +352,12 @@ paths:
                 type: object
                 required:
                   - notifications
+                  - amount
                 properties:
                   notifications:
                     $ref: '#/components/schemas/Notifications'
-        404:
-          description: Unable to find requested user
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+                  amount:
+                    type: number
         500:
           description: Unexpected error
           content:
