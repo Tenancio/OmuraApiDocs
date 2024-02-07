@@ -512,36 +512,38 @@ paths:
                       <asset>:
                         type: number
   /buildTokenDeposit:
-    parameters:
-      - name: token_policy
-        description: The policy of the token being locked
-        in: body
-        required: true
-        schema:
-          type: string
-      - name: symbol
-        description: The symbol of the project
-        in: body
-        required: true
-        schema:
-          type: string
-      - name: lock_assets
-        description: The assets being locked
-        in: body
-        required: true
-        schema:
-          type: array
-          items:
-            type: object
-            required:
-              - asset
-            properties:
-              asset:
-                type: number
     post:
       summary: Build a transaction for depositing tokens to receive FPT
       tags:
         - Tx
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - token_policy
+                - symbol
+                - lock_assets
+              properties:
+                token_policy:
+                  description: The policy of the token being locked
+                  schema:
+                    type: string
+                symbol:
+                  description: The symbol of the project
+                  schema:
+                    type: string
+                lock_assets:
+                  description: The assets being locked
+                  type: array
+                  items:
+                    type: object
+                    required:
+                      - asset
+                    properties:
+                      asset:
+                        type: number
       responses:
         200:
           description: An Unsigned Transaction
@@ -561,7 +563,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
   /buildTokenWithdraw:
-    parameters:
+    requestBody:
       - name: token_policy
         description: The policy of the token being unlocked
         in: body
