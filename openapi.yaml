@@ -508,8 +508,7 @@ paths:
                       - <asset>
                     properties: 
                       <asset>:
-                        schema:
-                          type: number
+                        type: number
   /buildTokenDeposit:
     parameters:
       - name: token_policy
