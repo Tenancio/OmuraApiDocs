@@ -158,7 +158,7 @@ paths:
               schema:
                 type: array
                 items:
-                  type: array
+                  type: object
                   required:
                     - id
                     - name
