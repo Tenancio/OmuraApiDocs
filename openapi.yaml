@@ -523,19 +523,19 @@ paths:
         required: true
         schema:
           type: string
-      - name: lock_assets
-        description: The assets being locked
-        in: body
-        required: true
-        schema:
-          type: array
-          items:
-            type: object
-            required:
-              - asset
-            properties:
-              asset:
-                type: number
+      # - name: lock_assets
+      #   description: The assets being locked
+      #   in: body
+      #   required: true
+      #   schema:
+      #     type: array
+      #     items:
+      #       type: object
+      #       required:
+      #         - asset
+      #       properties:
+      #         asset:
+      #           type: number
     post:
       summary: Build a transaction for depositing tokens to receive FPT
       tags:
