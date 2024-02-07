@@ -474,7 +474,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /availaleTokenDepositAssets:
+  /availableTokenDepositAssets:
     parameters:   
       - name: symbol
         description: The symbol of the pool to deposit into.
@@ -536,8 +536,7 @@ paths:
               - <asset>
             properties:
               <asset>:
-                schema:
-                  type: number
+                type: number
     post:
       summary: Build a transaction for depositing tokens to receive FPT
       tags:
@@ -586,8 +585,7 @@ paths:
               - <asset>
             properties:
               <asset>:
-                schema:
-                  type: number
+                type: number
     post:
       summary: Build a transaction for withdrawing tokens using FPT
       tags:
