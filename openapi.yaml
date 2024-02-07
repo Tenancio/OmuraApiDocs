@@ -528,21 +528,19 @@ paths:
               properties:
                 token_policy:
                   description: The policy of the token being locked
-                  schema:
-                    type: string
+                  type: string
                 symbol:
                   description: The symbol of the project
-                  schema:
-                    type: string
+                  type: string
                 lock_assets:
                   description: The assets being locked
                   type: array
                   items:
                     type: object
                     required:
-                      - asset
+                      - <asset>
                     properties:
-                      asset:
+                      <asset>:
                         type: number
       responses:
         200:
@@ -563,36 +561,36 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
   /buildTokenWithdraw:
-    requestBody:
-      - name: token_policy
-        description: The policy of the token being unlocked
-        in: body
-        required: true
-        schema:
-          type: string
-      - name: symbol
-        description: The symbol of the project
-        in: body
-        required: true
-        schema:
-          type: string
-      - name: unlock_assets
-        description: The assets being unlocked
-        in: body
-        required: true
-        schema:
-          type: array
-          items:
-            type: object
-            required:
-              - asset
-            properties:
-              asset:
-                type: number
     post:
       summary: Build a transaction for withdrawing tokens using FPT
       tags:
         - Tx
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - token_policy
+                - symbol
+                - unlock_assets
+              properties:
+                token_policy:
+                  description: The policy of the tokens being unlocked
+                  type: string
+                symbol:
+                  description: The symbol of the project
+                  type: string
+                unlock_assets:
+                  description: The assets being unlocked
+                  type: array
+                  items:
+                    type: object
+                    required:
+                      - <asset>
+                    properties:
+                      <asset>:
+                        type: number
       responses:
         200:
           description: An Unsigned Transaction
@@ -612,35 +610,33 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
   /buildLiquidityDeposit:
-    parameters:
-      - name: symbol
-        description: The pool symbol
-        in: body
-        required: true
-        schema:
-          type: string
-      - name: ada
-        description: The amount of ada being deposited
-        in: body
-        required: true
-        schema:
-          type: number
-      - name: token_amount
-        description: The amount of tokens to be deposited
-        in: body
-        required: true
-        schema:
-          type: number
-      - name: pkh
-        description: The user's public key hash
-        in: body
-        required: true
-        schema:
-          type: string
     post:
       summary: Create a transaction to deposit tokens to a liquidity pool
       tags: 
         - Liquidity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - symbol
+                - ada
+                - token_amount
+                - pkh
+              properties:
+                symbol:
+                  description: The pool symbol
+                  type: string
+                ada:
+                  description: The amount of ada being deposited
+                  type: number
+                token_amount:
+                  description: The amount of tokens to be deposited
+                  type: number
+                pkh:
+                  description: The user's public key hash
+                  type: string
       responses:
         200:
           description: An unsigned transaction
