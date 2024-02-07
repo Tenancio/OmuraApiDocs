@@ -533,9 +533,9 @@ paths:
           items:
             type: object
             required:
-              - <asset>
+              - asset
             properties:
-              <asset>:
+              asset:
                 type: number
     post:
       summary: Build a transaction for depositing tokens to receive FPT
@@ -582,9 +582,9 @@ paths:
           items:
             type: object
             required:
-              - <asset>
+              - asset
             properties:
-              <asset>:
+              asset:
                 type: number
     post:
       summary: Build a transaction for withdrawing tokens using FPT
