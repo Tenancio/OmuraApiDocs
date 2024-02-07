@@ -473,7 +473,43 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'       
+                $ref: '#/components/schemas/Error'
+  /availaleTokenDepositAssets:
+    parameters:   
+      - name: symbol
+        description: The symbol of the pool to deposit into.
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: pkh
+        description: The user's public key hash
+        in: query
+        required: true
+        schema:
+          type: string
+    get:
+      summary: Get the available tokens to deposit
+      tags:
+        - Exchange
+      responses:
+        200:
+          description: The available assets
+          content: 
+            application/json:
+              schema:
+                type: object
+                required:
+                  - assets
+                properties:
+                  assets:
+                    type: object
+                    required:
+                      - <asset>
+                    properties: 
+                      <asset>:
+                        schema:
+                          type: number
   /buildTokenDeposit:
     parameters:
       - name: token_policy
@@ -499,7 +535,9 @@ paths:
             required:
               - <asset>
             properties:
-              type: number
+              <asset>:
+                schema:
+                  type: number
     post:
       summary: Build a transaction for depositing tokens to receive FPT
       tags:
@@ -547,7 +585,9 @@ paths:
             required:
               - <asset>
             properties:
-              type: number
+              <asset>:
+                schema:
+                  type: number
     post:
       summary: Build a transaction for withdrawing tokens using FPT
       tags:
