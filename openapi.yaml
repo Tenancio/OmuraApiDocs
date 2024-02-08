@@ -199,6 +199,71 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /users/{pkh}/tokens:
+    parameters:
+      - name: pkh
+        description: The user public key hash
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      summary: Get the token positions of a user
+      tags:
+        - Users
+      responses:
+        200:
+          description: The token positions of a user
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  required:
+                    - id
+                    - name
+                    - symbol
+                    - img
+                    - fpt_balance
+                    - price
+                    - price_usd
+                    - day_price_change
+                    - day_volume
+                    - day_volume_change
+                    - seven_day_volume
+                    - seven_day_volume_change
+                  properties:
+                    id:
+                      type: string
+                    name:
+                      type: string
+                    symbol:
+                      type: string
+                    img:
+                      type: string
+                    fpt_balance:
+                      type: number
+                    price:
+                      type: number
+                    price_usd:
+                      type: number
+                    day_price_change:
+                      type: number
+                    day_volume:
+                      type: number
+                    day_volume_change:
+                      type: number
+                    seven_day_volume:
+                      type: number
+                    seven_day_volume_change:
+                      type: number
+        500:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /users/{pkh}/transactions:
     parameters:
       - name: pkh
