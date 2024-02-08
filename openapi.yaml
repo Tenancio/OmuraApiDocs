@@ -680,7 +680,7 @@ paths:
                 - symbol
                 - lp_amount
                 - pkh
-              parameters:
+              properties:
                 symbol:
                   description: The pool symbol
                   type: string
@@ -730,7 +730,7 @@ paths:
                 - tx
                 - witness
                 - pkh
-              parameters:
+              properties:
                 type:
                   description: The type of transaction
                   type: string
