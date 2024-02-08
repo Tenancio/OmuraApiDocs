@@ -667,7 +667,7 @@ paths:
                 $ref: '#/components/schemas/Error'
   /buildLiquidityWithdraw:
     post:
-      summary: Create a transaction to deposit tokens to a liquidity pool
+      summary: Create a transaction to withdraw tokens from a liquidity pool
       tags: 
         - Liquidity
       requestBody:
