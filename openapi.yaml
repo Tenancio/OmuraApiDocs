@@ -158,41 +158,49 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  type: object
-                  required:
-                    - id
-                    - name
-                    - symbol
-                    - img
-                    - pooled_ada
-                    - pooled_tokens
-                    - share
-                    - lp_balance
-                    - price
-                    - price_usd
-                  properties:
-                    id:
-                      type: string
-                    name:
-                      type: string
-                    symbol:
-                      type: string
-                    img:
-                      type: string
-                    pooled_ada:
-                      type: number
-                    pooled_tokens:
-                      type: number
-                    share:
-                      type: number
-                    lp_balance:
-                      type: number
-                    price:
-                      type: number
-                    price_usd:
-                      type: number
+                type: object
+                required:
+                  - liquidity
+                  - value
+                properties:
+                  liquidity:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                        - id
+                        - name
+                        - symbol
+                        - img
+                        - pooled_ada
+                        - pooled_tokens
+                        - share
+                        - lp_balance
+                        - price
+                        - price_usd
+                      properties:
+                        id:
+                          type: string
+                        name:
+                          type: string
+                        symbol:
+                          type: string
+                        img:
+                          type: string
+                        pooled_ada:
+                          type: number
+                        pooled_tokens:
+                          type: number
+                        share:
+                          type: number
+                        lp_balance:
+                          type: number
+                        price:
+                          type: number
+                        price_usd:
+                          type: number
+                  value:
+                    type: number
         500:
           description: Unexpected error
           content:
@@ -217,47 +225,55 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  type: object
-                  required:
-                    - id
-                    - name
-                    - symbol
-                    - img
-                    - fpt_balance
-                    - price
-                    - price_usd
-                    - day_price_change
-                    - day_volume
-                    - day_volume_change
-                    - seven_day_volume
-                    - seven_day_volume_change
-                  properties:
-                    id:
-                      type: string
-                    name:
-                      type: string
-                    symbol:
-                      type: string
-                    img:
-                      type: string
-                    fpt_balance:
-                      type: number
-                    price:
-                      type: number
-                    price_usd:
-                      type: number
-                    day_price_change:
-                      type: number
-                    day_volume:
-                      type: number
-                    day_volume_change:
-                      type: number
-                    seven_day_volume:
-                      type: number
-                    seven_day_volume_change:
-                      type: number
+                type: object
+                required:
+                  - tokens
+                  - value
+                properties:
+                  tokens:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                        - id
+                        - name
+                        - symbol
+                        - img
+                        - fpt_balance
+                        - price
+                        - price_usd
+                        - day_price_change
+                        - day_volume
+                        - day_volume_change
+                        - seven_day_volume
+                        - seven_day_volume_change
+                      properties:
+                        id:
+                          type: string
+                        name:
+                          type: string
+                        symbol:
+                          type: string
+                        img:
+                          type: string
+                        fpt_balance:
+                          type: number
+                        price:
+                          type: number
+                        price_usd:
+                          type: number
+                        day_price_change:
+                          type: number
+                        day_volume:
+                          type: number
+                        day_volume_change:
+                          type: number
+                        seven_day_volume:
+                          type: number
+                        seven_day_volume_change:
+                          type: number
+                  value:
+                    type: number
         500:
           description: Unexpected error
           content:
