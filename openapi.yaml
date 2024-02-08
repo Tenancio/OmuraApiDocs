@@ -232,29 +232,31 @@ paths:
               schema:
                 $ref: '#/components/schemas/Transactions'
   /users/update:
-    parameters:
-      - name: id
-        description: The ID of user to update
-        in: body
-        required: true
-        schema:
-          type: string
-      - name: username
-        description: The new username of the user
-        in: body
-        required: false
-        schema:
-          type: string
-      - name: image
-        description: The new display image of the user
-        in: query
-        required: false
-        schema:
-          type: string
     post:
       summary: Update a user
       tags:
         - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - pkh
+              properties:
+                pkh:
+                  description: The user's pkh
+                  type: string
+                username:
+                  description: The user's new username
+                  type: string
+                email:
+                  description: The user's new email
+                  type: string
+                  format: email
+                image:
+                  description: The user's new image
       responses:
         200:
           description: User updated
@@ -280,29 +282,29 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
   /users/create:
-    parameters:
-      - name: pkh
-        description: The pkh to use when creating the user
-        in: body
-        required: true
-        schema:
-          type: string
-      - name: username
-        description: The username to use when creating the user
-        in: body
-        required: false
-        schema:
-          type: string
-      - name: email
-        description: The email to use when creating the user
-        in: body
-        required: false
-        schema:
-          type: string
     post:
       summary: Create a user
       tags:
         - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - pkh
+              properties:
+                pkh:
+                  description: The user's pkh
+                  type: string
+                username:
+                  description: The username to use when creating the user
+                  type: string
+                email:
+                  description: The email to use when creating the user
+                  type: string
+                  format: email
       responses:
         201:
           description: User created
@@ -517,6 +519,7 @@ paths:
       tags:
         - Tx
       requestBody:
+        required: true
         content:
           application/json:
             schema:
@@ -615,6 +618,7 @@ paths:
       tags: 
         - Liquidity
       requestBody:
+        required: true
         content:
           application/json:
             schema:
@@ -662,29 +666,30 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
   /buildLiquidityWithdraw:
-    parameters:
-      - name: symbol
-        description: The pool symbol
-        in: body
-        required: true
-        schema:
-          type: string
-      - name: lp_amount
-        description: the amount of lp tokens to be exchanged
-        in: body
-        required: true
-        schema:
-          type: number
-      - name: pkh
-        description: The user's public key hash
-        in: body
-        required: true
-        schema:
-          type: string
     post:
       summary: Create a transaction to deposit tokens to a liquidity pool
       tags: 
         - Liquidity
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - symbol
+                - lp_amount
+                - pkh
+              parameters:
+                symbol:
+                  description: The pool symbol
+                  type: string
+                lp_amount:
+                  description: The amount of lp tokens to be exchanged
+                  type: number
+                pkh:
+                  description: The user's pkh
+                  type: string
       responses:
         200:
           description: An unsigned transaction
@@ -710,35 +715,34 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
   /submit:
-    parameters:
-      - name: type
-        description: The type of transaction
-        in: body
-        required: true
-        schema:
-          type: string
-      - name: tx
-        description: The transaction body
-        in: body
-        required: true
-        schema:
-          type: string
-      - name: witness
-        description: The transaction witness
-        in: body
-        required: true
-        schema:
-          type: string
-      - name: pkh
-        description: The user's pkh
-        in: body
-        required: true
-        schema:
-          type: string
     post:
       summary: Sumbit a transaction to the blockchain
       tags:
         - Tx
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - type
+                - tx
+                - witness
+                - pkh
+              parameters:
+                type:
+                  description: The type of transaction
+                  type: string
+                tx:
+                  description: The transaction body
+                  type: string
+                witness:
+                  description: The transaction witness
+                  type: string
+                pkh:
+                  description: The user's pkh
+                  type: string
       responses:
         200:
           description: A Tx Hash
