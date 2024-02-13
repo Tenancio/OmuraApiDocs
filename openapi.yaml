@@ -418,12 +418,6 @@ paths:
         required: true
         schema:
           type: string
-      - name: page
-        description: the page to get
-        in: query
-        required: false
-        schema:
-          type: number
     get:
       summary: Get the notifications of a user
       tags:
