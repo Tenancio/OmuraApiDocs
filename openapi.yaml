@@ -687,6 +687,50 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /previewLiquidityDeposit:
+    parameters:
+      - name: symbol
+        description: The symbol to retrieve transactions for
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: token_amount
+        description: the number of tokens to deposit
+        in: query
+        required: false
+        schema:
+          type: integer
+    get:
+      responses:
+        200:
+          description: Preview of the user's share and required ada
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - share
+                  - required_ada
+                properties:
+                  share:
+                    description: the user's expected share of the pool
+                    type: number
+                  required_ada:
+                    description: the required amount of Ada to deposit with the tokens
+                    type: number
+          404:
+            description: The symbol was not found
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Error'
+          500:
+            description: An unexpected error occurred
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Error'
   /buildLiquidityDeposit:
     post:
       summary: Create a transaction to deposit tokens to a liquidity pool
