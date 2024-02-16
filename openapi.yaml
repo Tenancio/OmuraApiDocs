@@ -719,6 +719,9 @@ paths:
                   required_ada:
                     description: the required amount of Ada to deposit with the tokens
                     type: number
+                  price:
+                    description: the price of the tokens in ada
+                    type: number
           404:
             description: The symbol was not found
             content:
