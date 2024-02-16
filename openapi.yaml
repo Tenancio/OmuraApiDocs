@@ -731,6 +731,72 @@ paths:
               application/json:
                 schema:
                   $ref: '#/components/schemas/Error'
+  /previewLiquidityWithdraw:
+    parameters:
+      - name: symbol
+        description: The symbol to retrieve transactions for
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: amount
+        description: the number of LPs to cash in
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: pkh
+        description: The user's pub key hash
+        in: query
+        required: true
+        schema:
+          type: string
+    get:
+      responses:
+        200:
+          description: Preview of the user's share and required ada
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - pooled_ada
+                  - pooled_tokens
+                  - share
+                  - ada_received
+                  - tokens_received
+                  - price
+                properties:
+                  pooled_ada:
+                    description: The user's pooled ada
+                    type: number
+                  pooled_tokens:
+                    description: The user's pooled tokens
+                    type: number
+                  share:
+                    description: the user's expected share of the pool
+                    type: number
+                  ada_received:
+                    description: the amount of Ada that would be received
+                    type: number
+                  tokens_received:
+                    description: the amount of tokens that would be received
+                    type: number
+                  price:
+                    description: the price of the tokens in ada
+                    type: number
+          404:
+            description: The symbol was not found
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Error'
+          500:
+            description: An unexpected error occurred
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Error'
   /buildLiquidityDeposit:
     post:
       summary: Create a transaction to deposit tokens to a liquidity pool
