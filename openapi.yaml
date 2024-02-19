@@ -462,6 +462,25 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
   /exchange/symbols:
+    parameters:
+      - name: pkh
+        description: The user's pkh
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: page
+        description: the page to Get
+        in: query
+        required: false
+        schema:
+          type: number
+      - name: search
+        description: item to search for
+        in: query
+        required: false
+        schema:
+          type: string
     get:
       summary: get symbols on the Omura exchange
       tags:
