@@ -572,6 +572,44 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /exchange/contracts/v0/pool:
+    parameters:
+      - name: symbol
+        description: the symbol of the pool
+        in: query
+        required: true
+        schema:
+          type: string
+    get:
+      summary: Get the contract for a liquidity pool
+      tags:
+        - Exchange
+      responses:
+        200:
+          description: The double cbor encoded contract for a pool
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - contract
+                properties:
+                  contract:
+                    type: object
+                    required:
+                      - type
+                      - script
+                    properties:
+                      type:
+                        type: string
+                      script:
+                        type: string
+        500:
+          description: An unexpected error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /availableTokenDepositAssets:
     parameters:   
       - name: symbol
