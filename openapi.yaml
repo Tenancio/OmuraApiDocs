@@ -636,15 +636,26 @@ paths:
               schema:
                 type: object
                 required:
+                  - available
                   - assets
                 properties:
+                  available:
+                    type: number
                   assets:
                     type: object
                     required:
-                      - <asset>
+                      - <token_name>
                     properties: 
-                      <asset>:
-                        type: number
+                      <token_name>:
+                        type: object
+                        required:
+                          - image
+                          - quantity
+                        properties:
+                          image:
+                            type: string
+                          quantity:
+                            type: number
   /buildTokenDeposit:
     post:
       summary: Build a transaction for depositing tokens to receive FPT
@@ -959,7 +970,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /submit:
+  /submitTx:
     post:
       summary: Sumbit a transaction to the blockchain
       tags:
