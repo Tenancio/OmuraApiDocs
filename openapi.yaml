@@ -524,6 +524,12 @@ paths:
         required: true
         schema:
           type: integer
+      - name: resolution
+        description: The resolution of the bars to retrieve. Valid values are 60, 1D or 1W.
+        in: query
+        required: true
+        schema:
+          type: string
     get:
       summary: Get bar data for a symbol on the Omura exchange
       tags:
