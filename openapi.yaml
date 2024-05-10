@@ -1280,7 +1280,9 @@ components:
         - event
         - price
         - input
+        - input_currency
         - output
+        - output_currency
         - timestamp
       properties:
         id:
@@ -1297,8 +1299,12 @@ components:
           type: number
         input:
           type: number
+        input_currency:
+          type: string
         output:
           type: number
+        output_currency:
+          type: string
         timestamp:
           type: number
     Error:
