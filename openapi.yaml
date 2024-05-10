@@ -25,6 +25,12 @@ paths:
         required: false
         schema:
           type: integer
+      - name: limit
+        description: the number of results to be returned per page
+        in: query
+        required: false
+        schema:
+          type: integer
       - name: sort
         description: Sort by a specific column in ascending or descending order
         in: query
@@ -294,6 +300,12 @@ paths:
         required: false
         schema:
           type: integer
+      - name: limit
+        description: the number of results to be returned per page
+        in: query
+        required: false
+        schema:
+          type: integer
       - name: search
         description: Symbol to search for
         in: query
@@ -475,6 +487,12 @@ paths:
         required: false
         schema:
           type: number
+      - name: limit
+        description: the number of results to be returned per page
+        in: query
+        required: false
+        schema:
+          type: integer
       - name: search
         description: item to search for
         in: query
@@ -557,6 +575,12 @@ paths:
           type: string
       - name: page
         description: page number for pagination
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: limit
+        description: the number of results to be returned per page
         in: query
         required: false
         schema:
