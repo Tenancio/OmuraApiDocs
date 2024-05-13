@@ -1000,9 +1000,127 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /previewBuy:
+    parameters:
+      - name: symbol
+        description: The symbol of the pool
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: ada
+        description: The number of ada used to buy tokens
+        in: query
+        required: true
+        schema:
+          type: integer
+      - name: slippage
+        description: The requested slippage limit as a number eg 1 = 1%
+        in: query
+        required: true
+        schema:
+          type: integer
+    get:
+      summary: Preview a buy transaction
+      tags:
+        - Tx
+      responses:
+        200:
+          description: A buy preview
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - minimum_receive
+                  - price_impact
+                  - lp_fee
+                  - batcher_fee
+                  - deposit_ada
+                properties:
+                  minimum_receive:
+                    description: The minimum number of tokens to receive
+                    type: string
+                  price_impact:
+                    description: The impact on the pool price
+                    type: number
+                  lp_fee:
+                    description: The liquidity provider fee
+                    type: number
+                  batcher_fee:
+                    description: The batcher fee
+                    type: number
+                  deposit_ada:
+                    description: The deposit required to submit the Tx
+                    type: number
+        500:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /previewSell:
+    parameters:
+      - name: symbol
+        description: The symbol of the pool
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: tokebs
+        description: The number of tokens to sell
+        in: query
+        required: true
+        schema:
+          type: integer
+      - name: slippage
+        description: The requested slippage limit as a number eg 1 = 1%
+        in: query
+        required: true
+        schema:
+          type: integer
+    get:
+      summary: Preview a sell transaction
+      tags:
+        - Tx
+      responses:
+        200:
+          description: A sell preview
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - minimum_receive
+                  - price_impact
+                  - lp_fee
+                  - batcher_fee
+                  - deposit_ada
+                properties:
+                  minimum_receive:
+                    description: The minimum amount of ada to receive
+                    type: string
+                  price_impact:
+                    description: The impact on the pool price
+                    type: number
+                  lp_fee:
+                    description: The liquidity provider fee
+                    type: number
+                  batcher_fee:
+                    description: The batcher fee
+                    type: number
+                  deposit_ada:
+                    description: The deposit required to submit the Tx
+                    type: number
+        500:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /submitTx:
     post:
-      summary: Sumbit a transaction to the blockchain
+      summary: Submit a transaction to the blockchain
       tags:
         - Tx
       requestBody:
