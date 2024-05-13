@@ -1067,7 +1067,7 @@ paths:
         required: true
         schema:
           type: string
-      - name: tokebs
+      - name: tokens
         description: The number of tokens to sell
         in: query
         required: true
