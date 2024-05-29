@@ -312,7 +312,11 @@ paths:
         required: false
         schema:
           type: string
-
+      - name: filter
+        description: Filter to apply
+        in: query
+        schema: 
+          type: string
     get:
       summary: Get a user's transactions
       tags:
