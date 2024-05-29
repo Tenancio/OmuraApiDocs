@@ -434,6 +434,18 @@ paths:
         required: true
         schema:
           type: string
+      - name: page
+        description: Page number
+        in: query
+        required: false
+        schema:
+          type: number
+      - name: limit
+        description: Number of items per page
+        in: query
+        required: false
+        schema:
+          type: number
     get:
       summary: Get the notifications of a user
       tags:
