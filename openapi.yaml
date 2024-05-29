@@ -1425,6 +1425,7 @@ components:
         - symbol
         - event
         - price
+        - img
         - input
         - input_currency
         - output
@@ -1443,6 +1444,8 @@ components:
           type: string
         price:
           type: number
+        img:
+          type: string
         input:
           type: number
         input_currency:
