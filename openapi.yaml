@@ -1027,7 +1027,13 @@ paths:
       - name: ada
         description: The number of ada used to buy tokens
         in: query
-        required: true
+        required: false
+        schema:
+          type: integer
+      - name: tokens
+        description: The number of tokens to buy
+        in: query
+        required: false
         schema:
           type: integer
       - name: slippage
@@ -1049,6 +1055,7 @@ paths:
                 type: object
                 required:
                   - minimum_receive
+                  - cost
                   - price_impact
                   - lp_fee
                   - batcher_fee
@@ -1056,6 +1063,9 @@ paths:
                 properties:
                   minimum_receive:
                     description: The minimum number of tokens to receive
+                    type: string
+                  cost:
+                    description: The amount of ada required for the buy transaction
                     type: string
                   price_impact:
                     description: The impact on the pool price
@@ -1069,6 +1079,74 @@ paths:
                   deposit_ada:
                     description: The deposit required to submit the Tx
                     type: number
+        500:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /buildBuy:
+    post:
+      summary: Create a transaction to buy tokens from a liquidity pool
+      tags: 
+        - Exchange
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - symbol
+                - slippage
+                - pkh
+                - user_addr
+              optional:
+                - ada
+                - tokens
+              properties:
+                symbol:
+                  description: The pool symbol
+                  type: string
+                slippage:
+                  description: The requested slippage limit as a number eg 1 = 1%
+                  type: number
+                pkh:
+                  description: The user's pkh
+                  type: string
+                user_addr:
+                  description: The user's address
+                  type: string
+                ada:
+                  description: The amount of ada used to buy tokens
+                  type: number
+                tokens:
+                  description: The amount of tokens to buy. Superceded by the "ada" parameter
+                  type: number
+      responses:
+        200:
+          description: An unsigned transaction
+          content:
+            application/json:
+              schema:
+                type: object
+                required: 
+                  - tx
+                properties:
+                  tx:
+                    type: string
+        400:
+          description: Malformed Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        404:
+          description: Pool not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         500:
           description: Unexpected error
           content:
@@ -1128,6 +1206,69 @@ paths:
                   deposit_ada:
                     description: The deposit required to submit the Tx
                     type: number
+        500:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /buildSell:
+    post:
+      summary: Create a transaction to Sell tokens to a liquidity pool
+      tags: 
+        - Exchange
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - symbol
+                - slippage
+                - pkh
+                - user_addr
+                - token_amount
+              properties:
+                symbol:
+                  description: The pool symbol
+                  type: string
+                slippage:
+                  description: The requested slippage limit as a number eg 1 = 1%
+                  type: number
+                pkh:
+                  description: The user's pkh
+                  type: string
+                user_addr:
+                  description: The user's address
+                  type: string
+                token_amount:
+                  description: The amount of tokens to sell
+                  type: number
+      responses:
+        200:
+          description: An unsigned transaction
+          content:
+            application/json:
+              schema:
+                type: object
+                required: 
+                  - tx
+                properties:
+                  tx:
+                    type: string
+        400:
+          description: Malformed Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        404:
+          description: Pool not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         500:
           description: Unexpected error
           content:
