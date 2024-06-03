@@ -317,6 +317,7 @@ paths:
         in: query
         schema: 
           type: string
+          enum: [buy, sell, liquidity_deposit, liquidity_withdraw, fpt_deposit, fpt_withdraw]
     get:
       summary: Get a user's transactions
       tags:
