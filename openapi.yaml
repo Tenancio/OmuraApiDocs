@@ -1601,13 +1601,21 @@ components:
         img:
           type: string
         input:
-          type: number
+          type: array
+          items:
+            type: number
         input_currency:
-          type: string
+          type: array
+          items:
+            type: string
         output:
-          type: number
+          type: array
+          items:
+            type: number
         output_currency:
-          type: string
+          type: array
+          items:
+            type: string
         timestamp:
           type: number
     Error:
