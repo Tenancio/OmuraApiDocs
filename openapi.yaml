@@ -286,6 +286,45 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /users/{pkh}/tokens/{symbol}:
+    parameters:
+      - name: pkh
+        description: The user public key hash
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: symbol
+        description: The symbol of the pool
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      summary: Get the token positions of a user
+      tags:
+        - Users
+      responses:
+        200:
+          description: The token positions of a user
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - tokens
+                  - value
+                properties:
+                  tokens:
+                    type: number
+                  value:
+                    type: number
+        500:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /users/{pkh}/transactions:
     parameters:
       - name: pkh
