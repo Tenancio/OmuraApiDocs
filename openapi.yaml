@@ -1315,6 +1315,56 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /buildClaim:
+    post:
+      summary: Create a transaction to claim test NFTs
+      tags: 
+        - Exchange
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - pkh
+                - user_addr
+              properties:
+                pkh:
+                  description: The user's pkh
+                  type: string
+                user_addr:
+                  description: The user's address
+                  type: string
+      responses:
+        200:
+          description: An unsigned transaction
+          content:
+            application/json:
+              schema:
+                type: object
+                required: 
+                  - tx
+                  - witness
+                properties:
+                  tx:
+                    type: string
+                  witnesses:
+                    type: array
+                    items: 
+                      type: string
+        400:
+          description: Malformed Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        500:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /submitTx:
     post:
       summary: Submit a transaction to the blockchain
