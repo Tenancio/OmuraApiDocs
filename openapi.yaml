@@ -1670,9 +1670,7 @@ components:
         - price
         - img
         - input
-        - input_currency
         - output
-        - output_currency
         - timestamp
       properties:
         id:
@@ -1692,19 +1690,28 @@ components:
         input:
           type: array
           items:
-            type: number
-        input_currency:
-          type: array
-          items:
-            type: string
+            type: object
+            required:
+              - amount
+              - currency
+            properties:
+              amount:
+                type: number
+              currency:
+                type: string
         output:
           type: array
           items:
-            type: number
-        output_currency:
-          type: array
-          items:
-            type: string
+            type: object
+            required:
+              - amount
+              - currency
+            properties:
+              amount:
+                type: number
+              currency:
+                type: string
+
         timestamp:
           type: number
     Error:
